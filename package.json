@@ -1,0 +1,15 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ota-meshi/Intl.DateTimeFormat_options.git"
+  },
+  "author": {
+    "name": "yosuke ota",
+    "email": "otameshiyo23@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://ota-meshi.github.io/Intl.DateTimeFormat_options/",
+  "devDependencies": {
+    "eslint": "^4.7.2"
+  }
+}
