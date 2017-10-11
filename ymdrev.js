@@ -127,7 +127,7 @@ const reverseYmdHms = {};
 (function() {
 	const div = document.getElementById('ymdrev');
 
-	for (const format in reverseYmdHms) {
+	for (let format in reverseYmdHms) {
 		const label = document.createElement('label');
 		div.appendChild(label);
 		label.textContent = 'format:' + format;
