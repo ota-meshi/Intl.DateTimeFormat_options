@@ -11,6 +11,7 @@ const hours = ['numeric', '2-digit'];
 const minutes = ['numeric', '2-digit'];
 const seconds = ['numeric', '2-digit'];
 const timeZoneNames = ['short', 'long'];
+const hour12s = [true, false];
 const locales = [{lang: 'Afrikaans (Suid-Afrika)', code: 'af-ZA'},
 	{lang: 'Bahasa Indonesia (Indonesia)', code: 'id-ID'},
 	{lang: 'Bahasa Melayu (Malaysia)', code: 'ms-MY'},
@@ -118,7 +119,7 @@ const reverseYmdHms = {};
 		});
 	}
 
-	addRow('locale言語', 'locale', 'year', 'month', 'day', 'hour', 'minute', 'second', 'format');
+	addRow('locale言語', 'locale', 'year', 'month', 'day', 'hour', 'minute', 'second', 'hour12', 'format');
 
 	locales.forEach(function(locale) {
 		years.forEach(function(year) {
@@ -127,13 +128,15 @@ const reverseYmdHms = {};
 					hours.forEach(function(hour) {
 						minutes.forEach(function(minute) {
 							seconds.forEach(function(second) {
-								const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code, hour12: false};
-								const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
-								addRow(locale.lang, locale.code, year, month, day, hour, minute, second, fmt);
+								hour12s.forEach(function(hour12) {
+									const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code, hour12: hour12};
+									const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
+									addRow(locale.lang, locale.code, year, month, day, hour, minute, second, hour12, fmt);
 
-								const list = reverseYmdHms[fmt] || (reverseYmdHms[fmt] = []);
-								delete opt.timeZone;
-								list.push(opt);
+									const list = reverseYmdHms[fmt] || (reverseYmdHms[fmt] = []);
+									delete opt.timeZone;
+									list.push(opt);
+								});
 							});
 						});
 					});

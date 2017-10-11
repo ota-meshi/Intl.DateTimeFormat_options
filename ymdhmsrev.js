@@ -11,6 +11,7 @@ const hours = ['numeric', '2-digit'];
 const minutes = ['numeric', '2-digit'];
 const seconds = ['numeric', '2-digit'];
 const timeZoneNames = ['short', 'long'];
+const hour12s = [true, false];
 const locales = [{lang: 'Afrikaans (Suid-Afrika)', code: 'af-ZA'},
 	{lang: 'Bahasa Indonesia (Indonesia)', code: 'id-ID'},
 	{lang: 'Bahasa Melayu (Malaysia)', code: 'ms-MY'},
@@ -113,13 +114,15 @@ const reverseYmdHms = {};
 					hours.forEach(function(hour) {
 						minutes.forEach(function(minute) {
 							seconds.forEach(function(second) {
-								const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code, hour12: false};
-								const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
+								hour12s.forEach(function(hour12) {
+									const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code, hour12: hour12};
+									const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
 
-								const list = reverseYmdHms[fmt] || (reverseYmdHms[fmt] = []);
-								delete opt.timeZone;
-								opt.lang = locale.lang;
-								list.push(opt);
+									const list = reverseYmdHms[fmt] || (reverseYmdHms[fmt] = []);
+									delete opt.timeZone;
+									opt.lang = locale.lang;
+									list.push(opt);
+								});
 							});
 						});
 					});
@@ -154,7 +157,7 @@ const reverseYmdHms = {};
 			});
 		};
 
-		addRow('locale言語', 'locale', 'year', 'month', 'day', 'hour', 'minute', 'second');
+		addRow('locale言語', 'locale', 'year', 'month', 'day', 'hour', 'minute', 'second', 'hour12');
 		const opt = '';
 		list.forEach(function(d) {
 			const year = d.year,
@@ -164,7 +167,8 @@ const reverseYmdHms = {};
 				minute = d.minute,
 				second = d.second,
 				locale = d.locale;
-			addRow(d.lang, locale, year, month, day, hour, minute, second);
+				hour12 = d.hour12;
+			addRow(d.lang, locale, year, month, day, hour, minute, second, hour12);
 		});
 	}
 

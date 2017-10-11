@@ -11,6 +11,7 @@ const hours = ['numeric', '2-digit'];
 const minutes = ['numeric', '2-digit'];
 const seconds = ['numeric', '2-digit'];
 const timeZoneNames = ['short', 'long'];
+const hour12s = [true, false];
 const locales = [{lang: 'Afrikaans (Suid-Afrika)', code: 'af-ZA'},
 	{lang: 'Bahasa Indonesia (Indonesia)', code: 'id-ID'},
 	{lang: 'Bahasa Melayu (Malaysia)', code: 'ms-MY'},
