@@ -111,7 +111,7 @@ const reverseYmdHms = {};
 		const args = Array.prototype.slice.call(arguments);
 		const tr = document.createElement('tr');
 		tbody.appendChild(tr);
-		args.forEach((a) => {
+		args.forEach(function(a) {
 			const td = document.createElement('td');
 			tr.appendChild(td);
 			td.textContent = a;
