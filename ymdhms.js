@@ -127,7 +127,7 @@ const reverseYmdHms = {};
 					hours.forEach(function(hour) {
 						minutes.forEach(function(minute) {
 							seconds.forEach(function(second) {
-								const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code};
+								const opt = {year: year, month: month, day: day, hour: hour, minute: minute, second: second, timeZone: 'UTC', locale: locale.code, hour12: false};
 								const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
 								addRow(locale.lang, locale.code, year, month, day, hour, minute, second, fmt);
 

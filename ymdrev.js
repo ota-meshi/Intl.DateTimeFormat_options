@@ -110,7 +110,7 @@ const reverseYmdHms = {};
 		years.forEach(function(year) {
 			months.forEach(function(month) {
 				days.forEach(function(day) {
-					const opt = {year: year, month: month, day: day, timeZone: 'UTC', locale: locale.code};
+					const opt = {year: year, month: month, day: day, timeZone: 'UTC', locale: locale.code, hour12: false};
 					const fmt = new Intl.DateTimeFormat(locale.code, opt).format(date);
 
 					const list = reverseYmdHms[fmt] || (reverseYmdHms[fmt] = []);
