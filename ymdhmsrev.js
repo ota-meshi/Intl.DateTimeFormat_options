@@ -166,7 +166,7 @@ const reverseYmdHms = {};
 				hour = d.hour,
 				minute = d.minute,
 				second = d.second,
-				locale = d.locale;
+				locale = d.locale,
 				hour12 = d.hour12;
 			addRow(d.lang, locale, year, month, day, hour, minute, second, hour12);
 		});
